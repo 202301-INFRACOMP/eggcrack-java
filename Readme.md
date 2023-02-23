@@ -1,0 +1,3 @@
+# Eggcrack
+
+Java implementation
