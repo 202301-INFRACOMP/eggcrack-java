@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=eggcrack
+Comment=eggcrack
+Exec=/opt/eggcrack/bin/eggcrack
+Icon=/opt/eggcrack/lib/eggcrack.png
+Terminal=true
+Type=Application
+Categories=Utility

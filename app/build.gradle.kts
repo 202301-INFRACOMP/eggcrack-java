@@ -87,6 +87,8 @@ jlink {
                     "Utility",
                     "--linux-rpm-license-type",
                     "MIT",
+                    "--resource-dir",
+                    file("jpackage/linux").absolutePath,
                 )
         }
     }
