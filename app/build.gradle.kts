@@ -30,6 +30,7 @@ tasks.withType<JavaCompile>().configureEach {
 
 tasks.named<JavaExec>("run") {
     standardInput = System.`in`
+    jvmArgs = listOf("-Dfile.encoding=UTF-8")
 }
 
 java {

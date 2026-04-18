@@ -12,6 +12,12 @@ Java implementation
 - `./gradlew jpackage` # needs additional packages
 - `./gradlew spotlessApply`
 
+## Font Icons
+
+Seems that on windows requires some config
+
+There may be problem with locales across OS
+
 ## Packaging
 
 ### Windows
