@@ -10,6 +10,7 @@ jobs:
         os: [ ubuntu-latest, macOS-latest, windows-latest ]
         java: [ "25" ]
         distribution: [ "temurin" ]
+      fail-fast: false
     name: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6.0.2
@@ -24,3 +25,5 @@ jobs:
         uses: gradle/actions/setup-gradle@v6.1.0
       - name: Execute Gradle build
         run: ./gradlew build
+      - name: Execute Gradle jlink
+        run: ./gradlew jlink

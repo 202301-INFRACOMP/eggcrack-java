@@ -1,7 +1,9 @@
 [versions]
 spotless = "8.4.0"
+jlink = "4.0.0"
 
 [libraries]
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless"}
+jlink = {id = "org.beryx.jlink", version.ref = "jlink"}
