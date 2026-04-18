@@ -1,3 +1,5 @@
+import org.gradle.internal.os.OperatingSystem
+
 plugins {
     application
     alias(libs.plugins.spotless)
@@ -60,6 +62,17 @@ jlink {
 
     jpackage {
         vendor = "orpheezt"
-        icon = file("../icon/eggcrack.png").absolutePath
+        val os = OperatingSystem.current()
+        val iconPath =
+            if (os.isWindows) {
+                "../icon/eggcrack.ico"
+            } else if (os.isMacOsX) {
+                "../icon/eggcrack.icns"
+            } else if (os.isLinux) {
+                "../icon/eggcrack.png"
+            } else {
+                throw GradleException("Unsupported operating system: ${os.name}")
+            }
+        icon = file(iconPath).absolutePath
     }
 }

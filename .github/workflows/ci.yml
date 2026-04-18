@@ -19,11 +19,45 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: ${{ matrix.distribution }}
-          cache: "gradle"
           check-latest: true
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6.1.0
-      - name: Execute Gradle build
+      - name: Build
         run: ./gradlew build
-      - name: Execute Gradle jlink
+      - name: jlink
         run: ./gradlew jlink
+      - name: jpackage
+        run: ./gradlew jpackage
+      - name: Upload DMG as an artifact
+        if: matrix.os == 'macOS-latest'
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: eggcrack-java${{ matrix.java }}-${{ matrix.os }}-dmg
+          path: app/build/jpackage/*.dmg
+      - name: Upload EXE as an artifact
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: eggcrack-java${{ matrix.java }}-${{ matrix.os }}-exe
+          path: app/build/jpackage/*.exe
+
+      - name: Upload MSI as an artifact
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: eggcrack-java${{ matrix.java }}-${{ matrix.os }}-msi
+          path: app/build/jpackage/*.msi
+
+      - name: Upload DEB as an artifact
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: eggcrack-java${{ matrix.java }}-${{ matrix.os }}-deb
+          path: app/build/jpackage/*.deb
+
+      - name: Upload RPM as an artifact
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: eggcrack-java${{ matrix.java }}-${{ matrix.os }}-rpm
+          path: app/build/jpackage/*.rpm
