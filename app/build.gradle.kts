@@ -79,5 +79,15 @@ jlink {
             installerOptions = listOf("--win-per-user-install", "--win-dir-chooser", "--win-menu", "--win-shortcut")
             imageOptions = listOf("--win-console")
         }
+        if (os.isLinux) {
+            installerOptions =
+                listOf(
+                    "--linux-shortcut",
+                    "--linux-menu-group",
+                    "Utility",
+                    "--linux-rpm-license-type",
+                    "MIT",
+                )
+        }
     }
 }
