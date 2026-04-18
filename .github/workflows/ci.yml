@@ -1,4 +1,4 @@
-name: Gradle Build
+name: CI
 
 on: [ push, pull_request, workflow_dispatch ]
 
@@ -10,11 +10,9 @@ jobs:
         os: [ ubuntu-latest, macOS-latest, windows-latest ]
         java: [ "25" ]
         distribution: [ "temurin" ]
-      fail-fast: false
     name: ${{ matrix.os }}
     steps:
-      - name: Git checkout
-        uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v6.0.2
       - name: Set up JDK
         uses: actions/setup-java@v5.2.0
         with:
@@ -23,6 +21,6 @@ jobs:
           cache: "gradle"
           check-latest: true
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v6
-      - name: Echo JAVA_HOME
-        run: echo $JAVA_HOME
+        uses: gradle/actions/setup-gradle@v6.1.0
+      - name: Execute Gradle build
+        run: ./gradlew build
