@@ -8,6 +8,7 @@ import edu.eggcrack.storage.InfiniteMailbox;
 import edu.eggcrack.storage.Mailbox;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 public class ProductFactory implements Runnable {
   private final List<Runnable> workers = new ArrayList<>();
@@ -69,19 +70,9 @@ public class ProductFactory implements Runnable {
 
   @Override
   public void run() {
-    var threads = new ArrayList<Thread>(workers.size());
-
-    for (final var w : workers) {
-      final var tmp = new Thread(w);
-      threads.add(tmp);
-      tmp.start();
-    }
-
-    for (final var t : threads) {
-      try {
-        t.join();
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
+    try (final var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+      for (final var worker : workers) {
+        executor.submit(worker);
       }
     }
   }
