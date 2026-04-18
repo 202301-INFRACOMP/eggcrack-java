@@ -1,0 +1,7 @@
+[versions]
+spotless = "8.4.0"
+
+[libraries]
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless"}
