@@ -11,3 +11,13 @@ Java implementation
 - `./gradlew jlinkZip`
 - `./gradlew jpackage` # needs additional packages
 - `./gradlew spotlessApply`
+
+## Packaging
+
+### Windows
+
+Depends on Wix V3
+
+### Linux
+
+You need the dependencies for building DEBs and RPMs

@@ -74,5 +74,9 @@ jlink {
                 throw GradleException("Unsupported operating system: ${os.name}")
             }
         icon = file(iconPath).absolutePath
+        if (os.isWindows) {
+            installerOptions = listOf("--win-per-user-install", "--win-dir-chooser", "--win-menu", "--win-shortcut")
+            imageOptions = listOf("--win-console")
+        }
     }
 }
